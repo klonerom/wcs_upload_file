@@ -29,12 +29,10 @@
 <?php
 
 // chemin vers un dossier sur le serveur qui va recevoir les fichiers uploadés (attention ce dossier doit être accessible en écriture)
-$uploadDir = '/home/rom1/Documents/wcs/quetes/22_php_upload_file/challenge/fichier_to/';
-
+$uploadDir = __DIR__ . '/fichier_to/';
 //recupération dossier de stockage des images une fois renommée
 $folder_destination_name = new SplFileInfo($uploadDir); // /home/rom1 ... /fichier_to
 $folder_destination_name = $folder_destination_name->getFilename(); //renvoie fichier_to
-
 
 if (!empty($_FILES)) {
 
@@ -173,6 +171,7 @@ if (!empty($_FILES)) {
         //$folder_files = array_diff(scandir($folder_destination_name, 1), array('..', '.'));
 
         $folder_files = new FilesystemIterator($folder_destination_name);
+
 
         //test si il y a des fichiers dans le dossier
         if (!empty($folder_files->getPathname())) {
